@@ -8,14 +8,14 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/Adityaraj-star/go-boilerplate/internal/config"
+	loggerConfig "github.com/Adityaraj-star/go-boilerplate/internal/logger"
 	pgxzero "github.com/jackc/pgx-zerolog"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/jackc/pgx/v5/tracelog"
 	"github.com/newrelic/go-agent/v3/integrations/nrpgx5"
 	"github.com/rs/zerolog"
-	"github.com/Adityaraj-star/go-boilerplate/internal/config"
-	loggerConfig "github.com/Adityaraj-star/go-boilerplate/internal/logger"
 )
 
 type Database struct {
@@ -55,7 +55,7 @@ const DatabasePingTimeout = 10
 
 func New(cfg *config.Config, logger *zerolog.Logger, loggerService *loggerConfig.LoggerService) (*Database, error) {
 	hostPort := net.JoinHostPort(
-		cfg.Database.Host, 
+		cfg.Database.Host,
 		strconv.Itoa(cfg.Database.Port),
 	)
 
@@ -112,11 +112,11 @@ func New(cfg *config.Config, logger *zerolog.Logger, loggerService *loggerConfig
 	}
 
 	ctx, cancel := context.WithTimeout(
-		context.Background(), 
+		context.Background(),
 		DatabasePingTimeout*time.Second,
 	)
 	defer cancel()
-	
+
 	if err = pool.Ping(ctx); err != nil {
 		return nil, fmt.Errorf("failed to ping database: %w", err)
 	}

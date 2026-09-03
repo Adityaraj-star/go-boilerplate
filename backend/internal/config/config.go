@@ -57,12 +57,11 @@ type AuthConfig struct {
 	SecretKey string `koanf:"secret_key" validate:"required"`
 }
 
-
 // LoadConfig() -> Read every environment variable -> Create one Config object -> Pass Config everywhere
 func LoadConfig() (*Config, error) {
 	logger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stderr}).With().Timestamp().Logger()
 
-	k := koanf.New(".")	// configuration manager
+	k := koanf.New(".") // configuration manager
 
 	err := k.Load(env.Provider("BOILERPLATE_", ".", func(s string) string {
 		return strings.ToLower(strings.TrimPrefix(s, "BOILERPLATE_"))

@@ -3,12 +3,12 @@ package router
 import (
 	"net/http"
 
-	"github.com/labstack/echo/v4"
-	echoMiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/Adityaraj-star/go-boilerplate/internal/handler"
 	"github.com/Adityaraj-star/go-boilerplate/internal/middleware"
 	"github.com/Adityaraj-star/go-boilerplate/internal/server"
 	"github.com/Adityaraj-star/go-boilerplate/internal/service"
+	"github.com/labstack/echo/v4"
+	echoMiddleware "github.com/labstack/echo/v4/middleware"
 	"golang.org/x/time/rate"
 )
 

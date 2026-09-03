@@ -1,9 +1,9 @@
 package job
 
 import (
+	"github.com/Adityaraj-star/go-boilerplate/internal/config"
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog"
-	"github.com/Adityaraj-star/go-boilerplate/internal/config"
 )
 
 type JobService struct {
